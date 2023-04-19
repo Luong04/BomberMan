@@ -21,6 +21,7 @@ MainObject::MainObject()
     time_bom_no=0;
     map_x_ = 0;
     map_y_ = 0;
+    checkkey = 0;
 }
 bool MainObject::LoadImg(std::string path,SDL_Renderer* screen)
 {
@@ -67,6 +68,7 @@ void MainObject::handle(SDL_Event &e,SDL_Renderer* screen)
 {
     if(e.type==SDL_KEYDOWN &&e.key.repeat==0)
     {
+        setcheckkey(1);
         switch( e.key.keysym.sym )
         {
         case SDLK_w:
@@ -107,10 +109,10 @@ void MainObject::handle(SDL_Event &e,SDL_Renderer* screen)
             set_x_bom=x_pos_;
             set_y_bom=y_pos_;
             break;
-            // case SDLK_e: bomb.SetBomno(true);dat_bom=false;break;
+
         }
     }
-    else if (e.type==SDL_KEYUP&&e.key.repeat==0)
+    else if (getcheckkey()==1 && e.type==SDL_KEYUP && e.key.repeat==0 )
     {
         switch( e.key.keysym.sym )
         {
@@ -150,10 +152,12 @@ void MainObject::handle(SDL_Event &e,SDL_Renderer* screen)
             dat_bom=true;
             bomb.SetBomno(false);
             break;
-            //case SDLK_e: bomb.SetBomno(false);dat_bom=false;break;
+
         }
     }
 }
+
+
 void MainObject::SetClip()
 {
     for(int i = 0; i < 4; i++)
@@ -209,7 +213,8 @@ void MainObject::dichuyen(Map& map_data,GameMap &game_map)
                 x_pos_ -= x_val_;
             }
         }
-        else if( x_val_ < 0){
+        else if( x_val_ < 0)
+        {
             if( map_data.tile[y1][x1] == 1 || map_data.tile[y1][x1] == 2|| map_data.tile[y2][x1] == 1 || map_data.tile[y1][x2] == 2)
             {
                 x_pos_ = (x1 + 1)* TILE_SIZE;
@@ -219,8 +224,8 @@ void MainObject::dichuyen(Map& map_data,GameMap &game_map)
     }
     else if(x1<1 && y1>= 2 && y2 < MAP_Y - 1)
     {
-         x_pos_ = (x1 + 1)* TILE_SIZE;
-         x_pos_ -= x_val_;
+        x_pos_ = (x1 + 1)* TILE_SIZE;
+        x_pos_ -= x_val_;
     }
     else if(x2 >= MAP_X - 1 && y1>= 2 && y2 < MAP_Y - 1)
     {
@@ -247,7 +252,8 @@ void MainObject::dichuyen(Map& map_data,GameMap &game_map)
                 y_pos_ -= y_val_ ;
             }
         }
-        else if( y_val_ < 0){
+        else if( y_val_ < 0)
+        {
             if( map_data.tile[y1][x1] == 1 || map_data.tile[y1][x1] == 2|| map_data.tile[y1][x2] == 1 || map_data.tile[y1][x2] ==2)
             {
                 y_pos_ = (y1 + 1)* TILE_SIZE;
@@ -255,10 +261,10 @@ void MainObject::dichuyen(Map& map_data,GameMap &game_map)
             }
         }
     }
-   else if(x1>=1 && y1< 2 && x2 < MAP_X - 1)
+    else if(x1>=1 && y1< 2 && x2 < MAP_X - 1)
     {
-         y_pos_ = (y1 + 1)* TILE_SIZE;
-         y_pos_ -= y_val_;
+        y_pos_ = (y1 + 1)* TILE_SIZE;
+        y_pos_ -= y_val_;
     }
     else if(y2 >= MAP_Y - 1 && x1>= 1 && x2 < MAP_X - 1)
     {
@@ -275,7 +281,7 @@ void MainObject::dichuyen(Map& map_data,GameMap &game_map)
 }
 
 
-void MainObject::DatBom(SDL_Renderer* screen, Map &map_data_,Mix_Chunk* bom)
+void MainObject::DatBom(SDL_Renderer* screen, Map &map_data_,Mix_Chunk* bom, bool mute_)
 {
     bomb.LoadImg("loadimg/bom_chuoi.png",screen);
 
@@ -290,7 +296,8 @@ void MainObject::DatBom(SDL_Renderer* screen, Map &map_data_,Mix_Chunk* bom)
     time_bom_no++;
     bomb.SetXY(map_data_.start_x_,map_data_.start_y_);
     bomb.Show(screen);
-    Mix_PlayChannel(-1,bom,0);
+    if(mute_ == false) Mix_PlayChannel(-1,bom,0);
+    else Mix_HaltChannel(-1);
 }
 
 void MainObject::Bom_no(SDL_Renderer* screen, Map &map_data_)

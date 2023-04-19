@@ -14,9 +14,9 @@ public:
         rect_.x=x;
         rect_.y=y;
     }
-    void Setw_h(){
-        rect_.w = 70;
-        rect_.h = 70;
+    void Setw_h(const int &w, const int &h){
+        rect_.w = w;
+        rect_.h = h;
     }
     SDL_Rect GetRect()
     {

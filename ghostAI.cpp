@@ -76,7 +76,7 @@ void Ghost::SetClip()
     clip_[i][4].h=67;
 }
 }
-void Ghost::dichuyen(MainObject &main_, Mix_Chunk* ghost)
+void Ghost::dichuyen(MainObject &main_, Mix_Chunk* ghost, bool mute_)
 {
 
     x_pos_+=x_val_;
@@ -97,11 +97,17 @@ void Ghost::dichuyen(MainObject &main_, Mix_Chunk* ghost)
         y_val_ = 3;
     else y_val_ = 0;
 
-    if((abs(x_pos_ - map_x_) <= SCREEN_WIDTH && abs(x_pos_ - map_x_)>=SCREEN_WIDTH/2) && (abs(y_pos_ - map_y_) <= SCREEN_HEIGHT && abs(y_pos_ - map_y_)>=SCREEN_HEIGHT/2))
+    if((abs(x_pos_ - map_x_) <= SCREEN_WIDTH && (x_pos_ - map_x_)>=SCREEN_WIDTH/2) && (abs(y_pos_ - map_y_) <= SCREEN_HEIGHT ))
     {
-        Mix_PlayChannel(-1,ghost,0);
+        if(mute_ == false)
+            {
+                Mix_PlayChannel(-1,ghost,0);
+            }
+        else
+            {
+               Mix_HaltChannel(-1);
+            }
     }
-
 }
 
 

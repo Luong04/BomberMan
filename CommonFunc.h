@@ -24,9 +24,8 @@ const int SCREEN_HEIGHT = 770;
 static const int DOT_WIDTH = 66;
 static const int DOT_HEIGHT = 67;
 static bool CHECK = true;
-static const int RND = rand()%100;
-
-//const int toc_do=5;
+static const int RND = 53;
+static bool mute = false;
 
 struct Input
 {
@@ -54,6 +53,7 @@ struct Map
 
 namespace SDLCommonFunc
 {
+bool CheckFocusWithRect(const int &x, const int &y,const SDL_Rect &rect);
 bool CheckCollision(const SDL_Rect& obj1,const SDL_Rect& obj2);
 bool CheckCollision1(const SDL_Rect& obj1,const SDL_Rect& obj2);
 }

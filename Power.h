@@ -12,6 +12,7 @@ public:
     void render(SDL_Renderer* screen);
     void Init();
     void Decrease();
+    void print();
 private:
     int number_;
     std::vector<int> power_list;

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="GameNinja" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/GameNinja" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/GameNinja" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="BaseObject.cpp" />
+		<Unit filename="BaseObject.h" />
+		<Unit filename="BombObject.cpp" />
+		<Unit filename="BombObject.h" />
+		<Unit filename="CommonFunc.cpp" />
+		<Unit filename="CommonFunc.h" />
+		<Unit filename="MainObject.cpp" />
+		<Unit filename="MainObject.h" />
+		<Unit filename="Power.cpp" />
+		<Unit filename="Power.h" />
+		<Unit filename="TextObject.cpp" />
+		<Unit filename="TextObject.h" />
+		<Unit filename="Threat.cpp" />
+		<Unit filename="Threat.h" />
+		<Unit filename="ghostAI.cpp" />
+		<Unit filename="ghostAI.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="manhay.cpp" />
+		<Unit filename="manhay.h" />
+		<Unit filename="map.cpp" />
+		<Unit filename="map.h" />
+		<Unit filename="matanghinh.cpp" />
+		<Unit filename="matanghinh.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -50,7 +50,7 @@ void GameMap::LoadTiles(SDL_Renderer* screen)
     }
 }
 
-void GameMap::DrawMap(SDL_Renderer* screen,Support& win,Map &map_data)
+void GameMap::DrawMap(SDL_Renderer* screen,BaseObject& win,Map &map_data)
 {
     int k = 0;
     int map_x = 0;
@@ -76,14 +76,13 @@ void GameMap::DrawMap(SDL_Renderer* screen,Support& win,Map &map_data)
             if(val>0&&val<=4)
             {
                 tile_map[val].SetRect(j ,i );
-                tile_map[val].Setw_h();
+                tile_map[val].Setw_h(70,70);
                 tile_map[val].Render(screen);
             }
             else if(val == 9)
             {
                 win.SetRect(j,i);
-                win.Setw_h();
-                win.GetRect();
+                win.Setw_h(70,70);
                 win.Render(screen);
             }
             map_x++;
@@ -96,7 +95,7 @@ void GameMap::DrawMap(SDL_Renderer* screen,Support& win,Map &map_data)
             if(val == 2)
                 {
                     tilethreat[k].SetRect(j,i);
-                    tilethreat[k].Setw_h();
+                    tilethreat[k].Setw_h(70,70);
                     //std::cout<<k<<":"<<j<<" "<<i<<"\n";
                     k++;
 

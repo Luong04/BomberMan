@@ -37,18 +37,10 @@ public:
         return bomb.getbomno1();
     }
     void Bom_no(SDL_Renderer* screen, Map &map_data_);
-    void DatBom(SDL_Renderer* screen, Map &map_data_, Mix_Chunk* bom);
+    void DatBom(SDL_Renderer* screen, Map &map_data_, Mix_Chunk* bom, bool mute_);
     bool getdatbom()
     {
         return dat_bom;
-    }
-    int set_x_bom_()
-    {
-        return set_x_bom;
-    }
-    int set_y_bom_()
-    {
-        return set_y_bom;
     }
 
     void settocdo(int x)
@@ -92,6 +84,16 @@ public:
     int gety_loadanh() {return y_loadanh;}
 
     void CenterOnMap(Map& map_data);
+
+    void pauseinput();
+    void setcheckkey(int x)
+    {
+        checkkey = x;
+    }
+    int getcheckkey()
+    {
+        return checkkey;
+    }
 private:
     float x_val_;
     float y_val_;
@@ -116,5 +118,7 @@ private:
 
     bool vitrino;
     int y_loadanh;
+    int checkkey;
+
 };
 #endif // MAIN_OBJECT_H_

@@ -18,30 +18,39 @@ void Power::AddPos(const int &xpos)
 
 void Power::render(SDL_Renderer* screen)
 {
-    if(number_ == power_list.size())
-    {
+
         for(int i = 0; i < power_list.size();i++)
         {
             rect_.x = power_list.at(i);
-            rect_.y = 0;
-            rect_.w = 20;
-            rect_.h = 25;
+            rect_.y = 14;
+            rect_.w = 42;
+            rect_.h = 35;
             Render(screen);
         }
-    }
+
 }
 
 void Power::Init()
 {
-    number_ = 3;
+    number_ = 0;
     if(power_list.size() > 0)
     {
         power_list.clear();
     }
 
-    AddPos(20);
-    AddPos(60);
-    AddPos(100);
+    AddPos(21);
+    AddPos(77);
+    AddPos(133);
+}
+
+void Power::print()
+{
+    std::cout<<power_list.size()<<"\n";
+    for(int i = 0  ; i  < power_list.size();i++)
+    {
+        std::cout<<power_list.at(i)<<" ";
+    }
+    std::cout<<" ";
 }
 
 void Power::Decrease()

@@ -175,8 +175,8 @@ void BombObject::ShowBomNoRight(SDL_Renderer* screen,Map &map_data_)
 }
 void BombObject::logicbomno(Map& map_data,GameMap& game_map)
 {
-    int x=logicx;
-    int y=logicy;
+    int x = logicx;
+    int y = logicy;
 
     x=(x+33)/70;
     y=(y+33)/70;
@@ -192,11 +192,9 @@ void BombObject::logicbomno(Map& map_data,GameMap& game_map)
             for(int j=0; j<100; j++)
             {
                 SDL_Rect tmp=p_tile_threat[j].GetRectmThreat();
-                //std::cout<<RND<<"\n";
-                //std::cout<<j<<"<"<<tmp.x<<" "<<tmp.y<<" "<<tmp.w<<" "<<tmp.h<<">"<<"\n";
                 if(tmp.x/70==x1&&tmp.y/70==y1)
                 {
-                    if(CHECK == true && RND == j){
+                    if(CHECK == true && (rand()%99) == j){
                         map_data.tile[y1][x1] = 9; CHECK =false;
                     }
                     else if(map_data.tile[y1][x1] == 2)

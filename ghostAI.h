@@ -18,7 +18,7 @@ public:
         x_pos_=x;
         y_pos_=y;
     }
-    void dichuyen(MainObject &main_,Mix_Chunk* ghost);
+    void dichuyen(MainObject &main_,Mix_Chunk* ghost, bool mute_);
     void setda_chet(int x)
     {
         da_chet = x;

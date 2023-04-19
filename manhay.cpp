@@ -1,0 +1,182 @@
+#include "manhay.h"
+
+Manhay::Manhay()
+{
+    is_dichuyen = true;
+    frame_ = 0;
+    x_pos_ = 0;
+    y_pos_ = 0;
+    x_val_ = 6;
+    y_val_ = 6;
+    Manhay_width = 0;
+    Manhay_height = 0;
+    huongdi = 0;
+}
+
+void Manhay::SetClip()
+{
+    for(int i = 0; i <8;i++)
+    {
+        clip_[i].x=63*i;
+        clip_[i].y=0;
+        clip_[i].w=63;
+        clip_[i].h=66;
+    }
+}
+
+bool Manhay::loadImg(std::string path,SDL_Renderer* screen)
+{
+    bool ret=BaseObject::LoadImg(path,screen);
+    if(ret)
+    {
+        Manhay_width=this->rect_.w/8;
+        Manhay_height=this->rect_.h;
+        rect_.w /= 8;
+    }
+    return ret;
+}
+
+void Manhay::Show(SDL_Renderer* screen)
+{
+    frame_++;
+
+    if(frame_>=8)
+    {
+        frame_=0;
+    }
+
+    SDL_Rect *current_clip=&clip_[frame_];
+
+    Manhay_width=clip_[frame_].w;
+    Manhay_height=clip_[frame_].h;
+    SDL_Rect renderquad= {rect_.x - map_x_,rect_.y - map_y_,Manhay_width,Manhay_height};
+    SDL_RenderCopy(screen,p_object_,current_clip,&renderquad);
+}
+
+void Manhay::dichuyen(Map& map_data,GameMap &game_map,SDL_Rect bomb)
+{
+    int MANHAY_WIDTH=this->rect_.w;
+    int MANHAY_HEIGHT=this->rect_.h;
+    Tile_Threat*tile= game_map.gettile();
+    int x1 = 0;
+    int x2 = 0;
+    int y1 = 0;
+    int y2 = 0;
+
+    x1 = x_pos_/TILE_SIZE;
+    x2 = (x_pos_ + MANHAY_WIDTH )/TILE_SIZE;
+    y1 = (y_pos_)/TILE_SIZE;
+    y2 = (y_pos_ + MANHAY_HEIGHT )/TILE_SIZE;
+
+    if(huongdi==1)
+    {
+        int x1 = 0;
+        int x2 = 0;
+        int y1 = 0;
+        int y2 = 0;
+
+        x1 = (x_pos_+ x_val_)/TILE_SIZE;
+        x2 = (x_pos_ + x_val_ +MANHAY_WIDTH -1)/TILE_SIZE;
+        y1 = (y_pos_)/TILE_SIZE;
+        y2 = (y_pos_ + MANHAY_HEIGHT -1)/TILE_SIZE;
+
+        if(x1>=1 && x2< MAP_X-1 && y1 >= 2 && y2 < MAP_Y-1)
+        {
+            if(x_val_>0)
+            {
+                if(map_data.tile[y1][x2] ==1 || map_data.tile[y1][x2] ==2 || map_data.tile[y2][x2] == 1 || map_data.tile[y2][x2] ==2 )
+                {
+                    x_pos_ = x2 * TILE_SIZE;
+                    x_pos_ -= MANHAY_WIDTH + 1;
+                    x_val_ = -x_val_;
+                }
+            }
+            else if( x_val_ < 0)
+            {
+                if( map_data.tile[y1][x1] == 1 || map_data.tile[y1][x1] == 2|| map_data.tile[y2][x1] == 1 || map_data.tile[y1][x2] == 2)
+                {
+                    x_pos_ = (x1 + 1)* TILE_SIZE;
+                    x_val_ =- x_val_;
+                }
+            }
+        }
+        else if(x1<1 && y1>= 2 && y2 < MAP_Y - 1)
+        {
+            x_pos_ = (x1 + 1)* TILE_SIZE;
+            x_val_ = -x_val_;
+        }
+        else if(x2 >= MAP_X - 1 && y1>= 2 && y2 < MAP_Y - 1)
+        {
+            x_pos_ = (x2 - 1)* TILE_SIZE;
+            x_val_ = -x_val_;
+        }
+
+        SDL_Rect threat_o = this->GetRect();
+
+        bool t=SDLCommonFunc::CheckCollision1(bomb,threat_o);
+        if(t)
+        {
+            x_val_=-x_val_;
+        }
+         x_pos_ += x_val_;
+         rect_.x = x_pos_;
+         rect_.y = y_pos_;
+    }
+
+    else if(huongdi==2)
+    {
+        int x1 = 0;
+        int x2 = 0;
+        int y1 = 0;
+        int y2 = 0;
+        x1 = (x_pos_)/TILE_SIZE;
+        x2 = (x_pos_ + MANHAY_WIDTH)/TILE_SIZE;
+
+        y1 = (y_pos_ + y_val_)/TILE_SIZE;
+        y2 = (y_pos_ + y_val_ + MANHAY_HEIGHT - 1)/TILE_SIZE;
+
+        if(x1 >= 1 && x2 < MAP_X-1 &&y1 >=2 &&y2 <MAP_Y-1)
+        {
+            if(y_val_>0)
+            {
+                if(map_data.tile[y2][x1] ==1 || map_data.tile[y2][x1] ==2 || map_data.tile[y2][x2] == 1 || map_data.tile[y2][x2] == 2)
+                {
+                    y_pos_ = y2 * TILE_SIZE;
+                    y_pos_ -= MANHAY_HEIGHT + 1;
+                    y_val_ = -y_val_ ;
+                }
+            }
+            else if( y_val_ < 0)
+            {
+                if( map_data.tile[y1][x1] == 1 || map_data.tile[y1][x1] == 2|| map_data.tile[y1][x2] == 1 || map_data.tile[y1][x2] ==2)
+                {
+                    y_pos_ = (y1 + 1)* TILE_SIZE;
+                    y_val_ = -y_val_;
+                }
+            }
+        }
+        else if(x1>=1 && y1< 2 && x2 < MAP_X - 1)
+        {
+            y_pos_ = (y1 + 1)* TILE_SIZE;
+            y_val_= -y_val_;
+        }
+        else if(y2 >= MAP_Y - 1 && x1>= 1 && x2 < MAP_X - 1)
+        {
+            y_pos_ = (y2 - 1)* TILE_SIZE;
+            y_val_ = -y_val_;
+        }
+
+        SDL_Rect threat_o = this->GetRect();
+
+        bool t=SDLCommonFunc::CheckCollision1(bomb,threat_o);
+        if(t)
+        {
+            y_val_=-y_val_;
+        }
+        y_pos_ += y_val_;
+        rect_.y = y_pos_;
+        rect_.x=x_pos_;
+    }
+}
+
+

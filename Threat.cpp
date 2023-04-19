@@ -99,7 +99,7 @@ void Threat::dichuyen(Map& map_data,GameMap &game_map,SDL_Rect bomb)
                 if(map_data.tile[y1][x2] ==1 || map_data.tile[y1][x2] ==2 || map_data.tile[y2][x2] == 1 || map_data.tile[y2][x2] ==2 )
                 {
                     x_pos_ = x2 * TILE_SIZE;
-                    x_pos_ -= DOT_WIDTH + 1;
+                    x_pos_ -= THREAT_WIDTH + 1;
                     x_val_ = -x_val_;
                 }
             }
@@ -154,7 +154,7 @@ void Threat::dichuyen(Map& map_data,GameMap &game_map,SDL_Rect bomb)
                 if(map_data.tile[y2][x1] ==1 || map_data.tile[y2][x1] ==2 || map_data.tile[y2][x2] == 1 || map_data.tile[y2][x2] == 2)
                 {
                     y_pos_ = y2 * TILE_SIZE;
-                    y_pos_ -= DOT_HEIGHT + 1;
+                    y_pos_ -= THREAT_HEIGHT + 1;
                     y_val_ = -y_val_ ;
                 }
             }

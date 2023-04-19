@@ -3,7 +3,6 @@
 
 #include "CommonFunc.h"
 #include "BaseObject.h"
-#include "Support.h"
 
 #define MAX_TILES 5
 class TileMap : public BaseObject
@@ -37,7 +36,7 @@ public:
 
     void LoadMap(char* name);
     void LoadTiles(SDL_Renderer* screen);
-    void DrawMap(SDL_Renderer* screen, Support& win, Map& map_data);
+    void DrawMap(SDL_Renderer* screen, BaseObject& win, Map& map_data);
     Map getMap()const
     {
         return game_map_;
