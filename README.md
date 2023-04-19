@@ -20,7 +20,9 @@ Programme Language: C++
 Introduce: 
 You've got lost in a strange world and you have to find the way to get out of there. You have to kill all of enemies and reach the mystery gate to win the game.
 
-Have fun!
 ![demo](https://user-images.githubusercontent.com/124850605/233129677-d3e6ec1c-48be-41aa-9434-822e9e979d68.png)
-Try your best and you'll get deserve reward.
+
+
 ![demo2](https://user-images.githubusercontent.com/124850605/233130963-563862a5-d250-4434-968a-2910edd3e8f1.png)
+
+Have fun!
