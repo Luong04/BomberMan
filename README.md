@@ -25,4 +25,9 @@ You've got lost in a strange world and you have to find the way to get out of th
 
 ![demo2](https://user-images.githubusercontent.com/124850605/233130963-563862a5-d250-4434-968a-2910edd3e8f1.png)
 
+
+![demo3](https://user-images.githubusercontent.com/124850605/233245981-ffa7f324-7cdf-41a6-a914-6fdf3709ae44.png)
+
+
 Have fun!
+
