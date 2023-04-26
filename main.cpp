@@ -605,8 +605,10 @@ label:
                 }
             }
             SDL_Rect main_rect=main_obj.GetRect();
-            main_rect.w=DOT_WIDTH;
-            main_rect.h=DOT_HEIGHT;
+            main_rect.w=DOT_WIDTH-20;
+            main_rect.h=DOT_HEIGHT-20;
+            main_rect.x += 10;
+            main_rect.y += 10;
 
             bool check_main=false;
             int endgame = 0;
