@@ -1,23 +1,23 @@
 # BomberMan
 
-About this project:
+## About this project:
 - Name: BomberMan.
 - What is it? A game base on Dyna Blaster - a classic game.
 - Why did I make this: It's made for my major assignment.
 - How long did I make it? 3 months.
 - Image and Sound source: pngtree.com, pngegg.com, itch.io, tiengdong.com ,...
 
-About License:
+## About License:
 - Belong to Le Van Luong - K67_CACLC2 - UET.
 - For reference and entertainment (if you enjoy it)
 - Do not copy for any personal purpose. 
 
-Require:
+## Require:
 - SDL library ( SDL_image, SDL_mixer, SDL_ttf )
 
-Programme Language: C++
+## Programme Language: C++
 
-Introduce: 
+## Introduce: 
 You've got lost in a strange world and you have to find the way to get out of there. You have to kill all of enemies and reach the mystery gate to win the game.
 
 ![demo](https://user-images.githubusercontent.com/124850605/233129677-d3e6ec1c-48be-41aa-9434-822e9e979d68.png)
